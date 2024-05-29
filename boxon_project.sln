@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34511.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "boxon_project", "boxon_project.csproj", "{90D43F24-6F56-43EA-A9CF-A9B7AC9833DF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{90D43F24-6F56-43EA-A9CF-A9B7AC9833DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90D43F24-6F56-43EA-A9CF-A9B7AC9833DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90D43F24-6F56-43EA-A9CF-A9B7AC9833DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90D43F24-6F56-43EA-A9CF-A9B7AC9833DF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {32B8820F-C989-40CE-8E36-2F85B4D60F25}
+	EndGlobalSection
+EndGlobal
