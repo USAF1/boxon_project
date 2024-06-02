@@ -1,7 +1,11 @@
+using boxon_project.Interfaces;
+using boxon_project.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddSingleton<IArticelService, ArticleService>();
 
 var app = builder.Build();
 

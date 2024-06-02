@@ -16,3 +16,11 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.error{
+    border:1px solid red;
+}
+.error-message{
+    color:red;
+    font-size:10px;
+}

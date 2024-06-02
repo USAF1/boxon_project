@@ -2,79 +2,112 @@
     ViewData["Title"] = "Home Page";
 }
 
+
 <div class="container my-5">
-    <div class="row">
-        <div class="d-flex justify-content-between align-items-center ">
-            <h1 class="mb-4">Multilingual Form</h1>
-            <button class="btn btn-primary" id="add_block">Add Control Block</button>
-            <button class="btn btn-secondary" id="submit">Submit</button>
+    <h1>Multi-Language Form</h1>
+    <button class="btn btn-success float-right" id="submit-btn">Submit</button>
+    <br>
+    <div class="form-group">
+        <label for="form-mode">Enable Add & Delete Control Block Set:</label>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="form-mode" id="form-mode-english" value="0" checked>
+            <label class="form-check-label" for="form-mode-english">Only English</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="form-mode" id="form-mode-bilingual" value="1">
+            <label class="form-check-label" for="form-mode-bilingual">English & Arabic</label>
         </div>
     </div>
-    <form action="">
-        <div class="container card" id="mainform">
+
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <a class="nav-link active" id="english-tab" data-toggle="tab" role="tab" aria-controls="english" aria-selected="true">English</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="arabic-tab" data-toggle="tab" role="tab" aria-controls="arabic" aria-selected="false">Arabic</a>
+        </li>
+    </ul>
+
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="english" role="tabpanel" aria-labelledby="english-tab">
+            <div id="english-form-container">
+            </div>
+            <button type="button" class="btn btn-primary mt-2" id="add-english-block-btn">Add New</button>
         </div>
-    </form>
+        <div class="tab-pane fade" id="arabic" role="tabpanel" aria-labelledby="arabic-tab">
+            <div id="arabic-form-container">
+            </div>
+            <button type="button" class="btn btn-primary d-none mt-2" id="add-arabic-block-btn">إضافة جديد</button>
+        </div>
+    </div>
 </div>
 
 
-
-
-<template id="form-content-block-template">
-    <div class="form-content-block" data-block-id="">
-        <div class="container">
-            <div class="form-check mb-3">
-                <input class="form-check-input" type="radio" name="langOption" id="langOptionEnglish" value="english" checked>
-                <label class="form-check-label" for="langOptionEnglish">
-                    Only English
-                </label>
+<template id="english-content-block">
+    <div class="english-form-block" data-block-id="">
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="english-name">Name</label>
+                <input type="text" class="form-control english-name" id="english-name" required>
+                <label for="english-name" id="english-name-error" class="error-message d-none">Enter correct Name . Name  could not be empty</label>
             </div>
-            <div class="form-check mb-4">
-                <input class="form-check-input" type="radio" name="langOption" id="langOptionEnglishArabic" value="english-arabic">
-                <label class="form-check-label" for="langOptionEnglishArabic">
-                    English & Arabic
-                </label>
+            <div class="form-group col-md-4">
+                <label for="english-email">Email</label>
+                <input type="email" class="form-control english-email" id="english-email" required>
+                <label for="english-email" id="english-email-error" class="error-message d-none">Enter correct Email. Email could not be empty</label>
             </div>
-            <div class="row">
-                <div class="col-6">
-                    <div id="englishControlBlocks">
-                        <div class="froms">
-                            <div class="">
-                                <label>Name</label>
-                                <input type="text" class="form-control" placeholder="Name" required>
-                            </div>
-                            <div class="">
-                                <label>Email</label>
-                                <input type="email" class="form-control" placeholder="Email" required>
-                            </div>
-                            <div class="">
-                                <label>Phone</label>
-                                <input type="tel" class="form-control" placeholder="Phone" required>
-                            </div>
+            <div class="form-group col-md-4">
+                <label for="english-phone">Phone</label>
+                <input type="tel" class="form-control english-phone" id="english-phone" required>
+                <label for="english-phone" id="english-phone-error" class="error-message d-none">Enter correct Phone Numaber. Phone value could not be empty</label>
+            </div>
+        </div>
+        <button type="button" class="btn btn-danger float-right remove-english-block-btn mt-2" data-block-id="" onclick="removeBlock(this.dataset.blockId, 'english')">Remove Block Set</button>
+        <br>
+    </div>
 
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div id="arabicControlBlocks">
-                        <div class="froms">
-                            <div class="">
-                                <label>Name</label>
-                                <input type="text" class="form-control" placeholder="Name" >
-                            </div>
-                            <div class="">
-                                <label>Email</label>
-                                <input type="email" class="form-control" placeholder="Email" >
-                            </div>
-                            <div class="">
-                                <label>Phone</label>
-                                <input type="tel" class="form-control" placeholder="Phone" >
-                            </div>
+</template>
 
-                        </div>
-                    </div>
-                </div>
-                <button class="btn btn-sm btn-danger remove-block" data-block-id="" onclick="removeBlock(this.dataset.blockId)">Remove</button>
+
+<template id="arabic-content-block">
+    <div class="arabic-form-block" data-block-id="">
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="arabic-name">الاسم</label>
+                <input type="text" class="form-control arabic-name" id="arabic-name" required>
+                <label for="arabic-name" id="arabic-name-error" class="error-message d-none">اسم المستخدم لا يمكن أن يكون فارغًا</label>
+
+            </div>
+            <div class="form-group col-md-4">
+                <label for="arabic-email">البريد الإلكتروني</label>
+                <input type="email" class="form-control arabic-email" id="arabic-email" required>
+                <label for="arabic-email" id="arabic-email-error" class="error-message d-none">أدخل البريد الإلكتروني الصحيح. لا يمكن أن يكون البريد الإلكتروني فارغًا</label>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="arabic-phone">الهاتف</label>
+                <input type="tel" class="form-control arabic-phone" id="arabic-phone" required>
+                <label for="arabic-phone" id="arabic-phone-error" class="error-message d-none">أدخل رقم الهاتف الصحيح. لا يمكن أن يكون قيمة الهاتف فارغة</label>
+            </div>
+        </div>
+        <button type="button" class="btn btn-danger  remove-arabic-block-btn mt-2" data-block-id="" onclick="removeBlock(this.dataset.blockId, 'arabic')">إزالة مجموعة</button>
+        <br>
+    </div>
+</template>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" onclick="closeModel()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
             </div>
         </div>
     </div>
-</template>
+</div>
